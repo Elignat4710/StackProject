@@ -4,6 +4,12 @@ from django.contrib.auth.models import User, AbstractUser
 
 
 class MyUser(AbstractUser):
+
+    ACTIVITY = [
+        ('I', 'Institute'),
+        ('W', 'Work')
+    ]
+
     date_of_birth = models.DateField(
         verbose_name='date of birth',
         blank=True,
@@ -13,8 +19,13 @@ class MyUser(AbstractUser):
         verbose_name='rating',
         default=10,
     )
-    activity = models.TextField(
-        verbose_name='activity',
+    activity_type = models.CharField(
+        choices=ACTIVITY,
+        max_length=10,
+        blank=True
+    )
+    activity_place = models.TextField(
+        verbose_name='activity place',
         blank=True
     )
     skills = models.ManyToManyField(
