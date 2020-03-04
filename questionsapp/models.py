@@ -4,21 +4,31 @@ from stackproj import settings
 
 class Tag(models.Model):
     title = models.CharField(max_length=50)
+    description = models.TextField(
+        verbose_name='description'
+    )
 
     def __str__(self):
         return '{}'.format(self.title)
 
 
-class Question(models.Model):
+class StampedModel(models.Model):
+    created_on = models.DateTimeField(
+        auto_now_add=True
+    )
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
+
+    class Meta:
+        abstract = True
+
+
+class Question(StampedModel):
+    
     body = models.TextField(
         verbose_name='body of question'
-    )
-    created = models.DateTimeField(
-        auto_now_add=True
     )
     tags = models.ManyToManyField(
         'Tag',
@@ -36,16 +46,13 @@ class Question(models.Model):
         return self.title
 
 
-class Answer(models.Model):
-    author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
-    )
+class Answer(StampedModel):
     body = models.TextField(
         verbose_name='body of answer'
     )
-    created = models.DateTimeField(
-        auto_now_add=True
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
