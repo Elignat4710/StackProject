@@ -40,11 +40,20 @@ INSTALLED_APPS = [
     
     'userapp',
     'questionsapp',
+
+    'corsheaders',
+    
+    'rest_framework',
+    'rest_framework.authtoken',
+
+    'djoser',
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -124,3 +133,20 @@ STATIC_URL = '/static/'
 
 
 AUTH_USER_MODEL = "userapp.MyUser" 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+    'rest_framework.permissions.AllowAny',
+    )
+}
+
+CORS_ORIGIN_ALLOW_ALL = True;
+CORS_ORIGIN_WHITE_LIST = [
+    'http://localhost:8080',
+    'http://localhost:8081'
+]

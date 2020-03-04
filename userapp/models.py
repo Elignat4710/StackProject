@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, AbstractUser
 class MyUser(AbstractUser):
 
     ACTIVITY = [
-        ('I', 'Institute'),
+        ('S', 'Study'),
         ('W', 'Work')
     ]
 

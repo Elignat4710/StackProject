@@ -16,16 +16,16 @@ class StampedModel(models.Model):
     created_on = models.DateTimeField(
         auto_now_add=True
     )
-    author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
-    )
 
     class Meta:
         abstract = True
 
 
 class Question(StampedModel):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     
     body = models.TextField(
         verbose_name='body of question'
@@ -36,23 +36,23 @@ class Question(StampedModel):
         related_name='questions'
     )
     title = models.CharField(max_length=200)
-    answers = models.ManyToManyField(
-        'Answer',
-        blank=True,
-        related_name='answers'
-    )
 
     def __str__(self):
         return self.title
-
+ 
 
 class Answer(StampedModel):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     body = models.TextField(
         verbose_name='body of answer'
     )
     question = models.ForeignKey(
         Question,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='answers'
     )
 
     def __str__(self):
