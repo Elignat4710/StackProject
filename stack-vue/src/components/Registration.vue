@@ -11,7 +11,10 @@
                 <mu-text-field type='email' v-model="validateForm.email"></mu-text-field>
             </mu-form-item>
             <mu-form-item label='Password'>
-                <mu-text-field type='password' v-model="validateForm.password"></mu-text-field>
+                <mu-text-field type='password' v-model="validateForm.password1"></mu-text-field>
+            </mu-form-item>
+             <mu-form-item label='Confirm password'>
+                <mu-text-field type='password' v-model="validateForm.password2"></mu-text-field>
             </mu-form-item>
             <mu-form-item>
                 <mu-button @click="regUser" color='primary'>Sign in</mu-button>
@@ -35,7 +38,8 @@
                 validateForm:{
                     login: '',
                     email: '',
-                    password: ''
+                    password1: '',
+                    password2: ''
                 }
                 
             }
@@ -43,19 +47,20 @@
         methods:{
             regUser(){
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/register/',
+                    url: 'http://127.0.0.1:8000/rest-auth/registration/',
                     type: 'POST',
                     data:{
                         username: this.validateForm.login,
                         email: this.validateForm.email,
-                        password: this.validateForm.password
+                        password1: this.validateForm.password1,
+                        password2: this.validateForm.password2
                     },
                     success: (response) => {
                         alert('Success!')
                         window.location = '/'
                     },
                     error: (response) => {
-                        console.log(response)
+                        console.log(response.responseText)
                     }
                 })
                  

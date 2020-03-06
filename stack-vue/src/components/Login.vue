@@ -16,6 +16,16 @@
                 </mu-form-item>
             </mu-form>
             </mu-container>
+        <mu-row>
+            <g-signin-button
+            :params="googleSignInParams"
+            @success="onGoogleSignInSuccess"
+            >
+            <button class="btn btn-block btn-success">
+              Google Signin
+            </button>
+          </g-signin-button>
+        </mu-row>
     </mu-container>
 </template>
 
@@ -34,6 +44,9 @@
                 validateForm:{
                     login: '',
                     password: ''
+                },
+                googleSignInParams: {
+                    client_id: '559920722496-ic02pjffmjq267e84pggsjhtb0vhq6ls.apps.googleusercontent.com'
                 }
                 
             }
@@ -41,16 +54,38 @@
         methods: {
             setLogin(){
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/auth/token/login',
+                    url: 'http://127.0.0.1:8000/rest-auth/login/',
                     type: "POST",
                     data: {
                         username: this.validateForm.login,
                         password: this.validateForm.password
                     },
                     success: (response) =>{
-                        sessionStorage.setItem('auth_token', response.auth_token)
+                        console.log(response)
+                        sessionStorage.setItem('token', response.token)
                         this.$router.push({name: 'home'})
                     }
+                })
+            },
+            onGoogleSignInSuccess(resp){
+                console.log(resp)
+                const token = resp.uc.access_token
+                console.log(token)
+                
+                $.ajax({
+                    url: 'http://localhost:8000/auth/google/',
+                    type: 'POST',
+                    data: {
+                        access_token: token
+                    },
+                    success: (response) => {
+                        sessionStorage.setItem('token', response.token)
+                        this.$router.push({name: 'home'})
+                    },
+                    error: (response) => {
+                        console.log(response)
+                    }
+                    
                 })
             }
         }   

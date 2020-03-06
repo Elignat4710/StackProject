@@ -13,11 +13,13 @@
 
 <script>
 
+    import $ from 'jquery'
+
     export default {
         name: 'Home',
         computed: {
             auth() {
-                if(sessionStorage.getItem('auth_token')){
+                if(sessionStorage.getItem('token')){
                     return true
                 }
             }
@@ -30,8 +32,14 @@
                 this.$router.push({name: 'registration'})
             },
             logout(){
-                sessionStorage.removeItem('auth_token')
-                window.location = '/'
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/rest-auth/logout/',
+                    type: "GET",
+                    success: (response) =>{
+                        sessionStorage.removeItem('token')
+                        window.location = '/'
+                    }
+                })
             }
         },
         

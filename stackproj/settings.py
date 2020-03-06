@@ -45,10 +45,17 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'rest_framework.authtoken',
-
-    'djoser',
-    
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'django.contrib.sites',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
+
+REST_USE_JWT = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,9 +143,9 @@ AUTH_USER_MODEL = "userapp.MyUser"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
     'rest_framework.permissions.AllowAny',
@@ -150,3 +157,7 @@ CORS_ORIGIN_WHITE_LIST = [
     'http://localhost:8080',
     'http://localhost:8081'
 ]
+
+ACCOUNT_LOGOUT_ON_GET = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
