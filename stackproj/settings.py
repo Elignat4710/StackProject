@@ -169,6 +169,9 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+URL_FRONT = 'http://localhost:8080/#/'
+URL_BACK = 'http://127.0.0.1:8000'
+
 ACCOUNT_ADAPTER = 'stackproj.adapter.MyConfirmAdapter'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
@@ -176,9 +179,12 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = URL_FRONT + 'confirm_email/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = URL_FRONT + 'confirm_email/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'eligant4710@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ['PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+

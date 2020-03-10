@@ -10,7 +10,7 @@
         },
         methods:{
             redirect(){
-                alert('Confirm email success!')
+                alert('Confirm email success')
                 window.location = '/'
             }
         }

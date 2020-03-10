@@ -1,8 +1,11 @@
 from allauth.account.adapter import DefaultAccountAdapter
+from django.conf import settings
 
 
 class MyConfirmAdapter(DefaultAccountAdapter):
 
-    def get_email_confirmation_redirect_url(self, request):
-        path = 'http://localhost:8080/#/confirm_email'
-        return path
+    def send_mail(self, template_prefix, email, context):
+        context['activate_url'] = settings.URL_BACK + \
+            '/accounts-rest/registration/account-confirm-email/' + context['key']
+        msg = self.render_mail(template_prefix, email, context)
+        msg.send()
