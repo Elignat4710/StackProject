@@ -70,10 +70,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'stackproj.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,4 +160,25 @@ CORS_ORIGIN_WHITE_LIST = [
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+AUTHENTICATION_BACKENDS = (
+    # default
+    'django.contrib.auth.backends.ModelBackend',
+    # email login
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+ACCOUNT_ADAPTER = 'stackproj.adapter.MyConfirmAdapter'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'eligant4710@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['PASSWORD']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -73,7 +73,7 @@
                 console.log(token)
                 
                 $.ajax({
-                    url: 'http://localhost:8000/auth/google/',
+                    url: 'http://localhost:8000/user/auth/google/',
                     type: 'POST',
                     data: {
                         access_token: token

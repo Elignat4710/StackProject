@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Registration from '@/components/Registration'
+import ConfirmEmail from '@/components/ConfirmEmail'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/registration',
       name: 'registration',
       component: Registration
+    },
+    {
+      path: '/confirm_email',
+      name: 'confirm_email',
+      component: ConfirmEmail
     }
   ]
 })
