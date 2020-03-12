@@ -25,7 +25,7 @@ SECRET_KEY = 't5gwau@&w6v)ochy5=^991_^^2lq-odccs=%2key3u_a(=ias$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.linkedin',
 ]
 
 SITE_ID = 1
@@ -146,6 +147,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+
     ),
     'DEFAULT_PERMISSION_CLASSES': (
     'rest_framework.permissions.AllowAny',
@@ -162,15 +165,12 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-AUTHENTICATION_BACKENDS = (
-    # default
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    # email login
     'allauth.account.auth_backends.AuthenticationBackend',
-)
+]
 
 URL_FRONT = 'http://localhost:8080/#/'
-URL_BACK = 'http://127.0.0.1:8000'
 
 ACCOUNT_ADAPTER = 'stackproj.adapter.MyConfirmAdapter'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
@@ -187,4 +187,3 @@ EMAIL_HOST_USER = 'eligant4710@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ['PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-

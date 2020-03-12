@@ -31,6 +31,7 @@
 
 <script>
 
+    import axios from 'axios'
     import $ from 'jquery'
     import Home from '@/components/Home'
 
@@ -79,15 +80,17 @@
                         access_token: token
                     },
                     success: (response) => {
+                        console.log(response)
                         sessionStorage.setItem('token', response.token)
-                        this.$router.push({name: 'home'})
+                        alert('auth success!')
+                        // this.$router.push({name: 'home'})
                     },
                     error: (response) => {
                         console.log(response)
                     }
                     
                 })
-            }
+            },
         }   
     }
 </script>
