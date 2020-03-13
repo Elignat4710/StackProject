@@ -25,7 +25,7 @@ SECRET_KEY = 't5gwau@&w6v)ochy5=^991_^^2lq-odccs=%2key3u_a(=ias$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -187,3 +187,5 @@ EMAIL_HOST_USER = 'eligant4710@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ['PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
