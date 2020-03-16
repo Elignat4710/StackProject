@@ -171,7 +171,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-URL_FRONT = 'http://stackproj.s3-website.us-east-2.amazonaws.com/#/'
 
 ACCOUNT_ADAPTER = 'stackproj.adapter.MyConfirmAdapter'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
@@ -180,8 +179,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = URL_FRONT + 'confirm_email/'
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = URL_FRONT + 'confirm_email/'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'http://stackproj.s3-website.us-east-2.amazonaws.com/#/confirm_email/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'http://stackproj.s3-website.us-east-2.amazonaws.com/#/confirm_email/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'eligant4710@gmail.com'
