@@ -158,7 +158,8 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = True;
 CORS_ORIGIN_WHITE_LIST = [
     'http://localhost:8080',
-    'http://localhost:8081'
+    'http://localhost:8081',
+    'http://stackproj.s3-website.us-east-2.amazonaws.com'
 ]
 
 ACCOUNT_LOGOUT_ON_GET = True
@@ -170,7 +171,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-URL_FRONT = 'http://localhost:8080/#/'
+URL_FRONT = 'http://http://stackproj.s3-website.us-east-2.amazonaws.com/#/'
 
 ACCOUNT_ADAPTER = 'stackproj.adapter.MyConfirmAdapter'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
