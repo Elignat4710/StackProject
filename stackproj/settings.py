@@ -171,7 +171,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-URL_FRONT = 'http://http://stackproj.s3-website.us-east-2.amazonaws.com/#/'
+URL_FRONT = 'http://stackproj.s3-website.us-east-2.amazonaws.com/#/'
 
 ACCOUNT_ADAPTER = 'stackproj.adapter.MyConfirmAdapter'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True

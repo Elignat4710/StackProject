@@ -47,7 +47,7 @@
         methods:{
             regUser(){
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/rest-auth/registration/',
+                    url: 'http://3.19.77.231:8000/rest-auth/registration/',
                     type: 'POST',
                     data:{
                         username: this.validateForm.login,

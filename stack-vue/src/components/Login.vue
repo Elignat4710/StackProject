@@ -55,7 +55,7 @@
         methods: {
             setLogin(){
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/rest-auth/login/',
+                    url: 'http://3.19.77.231:8000/rest-auth/login/',
                     type: "POST",
                     data: {
                         username: this.validateForm.login,
@@ -74,7 +74,7 @@
                 console.log(token)
                 
                 $.ajax({
-                    url: 'http://localhost:8000/user/auth/google/',
+                    url: 'http://3.19.77.231:8000/user/auth/google/',
                     type: 'POST',
                     data: {
                         access_token: token
