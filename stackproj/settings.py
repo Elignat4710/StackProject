@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'questionsapp',
 
     'corsheaders',
-    
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -51,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.linkedin_oauth2',
 ]
 
 SITE_ID = 1
@@ -179,8 +178,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'http://stackproj.s3-website.us-east-2.amazonaws.com/#/'
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'http://stackproj.s3-website.us-east-2.amazonaws.com/#/'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'http://localhost:8080/#/confirm_email'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'http://localhost:8080/#/confirm_email'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'eligant4710@gmail.com'
@@ -189,3 +188,18 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'linkedin': {
+        'SCOPE': [
+            'r_emailaddress',
+        ],
+        'PROFILE_FIELDS': [
+            'id',
+            'first-name',
+            'last-name',
+            'email-address',
+        ]
+    }
+}

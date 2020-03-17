@@ -33,7 +33,7 @@
             },
             logout(){
                 $.ajax({
-                    url: 'http://3.19.77.231:8000/rest-auth/logout/',
+                    url: 'http://127.0.0.1:8000/rest-auth/logout/',
                     type: "GET",
                     success: (response) =>{
                         sessionStorage.removeItem('token')

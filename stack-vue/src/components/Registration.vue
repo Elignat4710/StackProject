@@ -19,6 +19,18 @@
             <mu-form-item>
                 <mu-button @click="regUser" color='primary'>Sign in</mu-button>
             </mu-form-item>
+            <mu-form-item>
+                <Google></Google>
+            </mu-form-item>
+            <mu-form-item>
+                <mu-button
+                :params='LinkedInParam'
+                @click="LinkedInSignIn"
+                color='primary'
+                >
+                LinkedIn
+                </mu-button>
+            </mu-form-item>
         </mu-form>
     </mu-container>
 </template>
@@ -27,11 +39,13 @@
 
     import Home from '@/components/Home'
     import $ from 'jquery'
+    import Google from '@/components/Google'
 
     export default {
         name: 'Registration',
         components:{
-            Home
+            Home,
+            Google
         },
         data(){
             return{
@@ -40,6 +54,9 @@
                     email: '',
                     password1: '',
                     password2: ''
+                },
+                LinkedInParam:{
+                    client_id: '86x3tsdy42o73h'
                 }
                 
             }
@@ -47,7 +64,7 @@
         methods:{
             regUser(){
                 $.ajax({
-                    url: 'http://3.19.77.231:8000/rest-auth/registration/',
+                    url: 'http://127.0.0.1:8000/rest-auth/registration/',
                     type: 'POST',
                     data:{
                         username: this.validateForm.login,
@@ -60,10 +77,12 @@
                         window.location = '/'
                     },
                     error: (response) => {
-                        console.log(response.responseText)
+                        
                     }
                 })
                  
+            },
+            LinkedInSignIn(resp){
             }
         } 
     }

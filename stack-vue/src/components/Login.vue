@@ -14,31 +14,25 @@
                 <mu-form-item>
                     <mu-button @click="setLogin" color='primary'>Log in</mu-button>
                 </mu-form-item>
+                <mu-form-item>
+                    <Google></Google>
+                </mu-form-item>
             </mu-form>
             </mu-container>
-        <mu-row>
-            <g-signin-button
-            :params="googleSignInParams"
-            @success="onGoogleSignInSuccess"
-            >
-            <button class="btn btn-block btn-success">
-              Google Signin
-            </button>
-          </g-signin-button>
-        </mu-row>
     </mu-container>
 </template>
 
 <script>
 
-    import axios from 'axios'
     import $ from 'jquery'
     import Home from '@/components/Home'
+    import Google from '@/components/Google'
 
     export default {
         name: 'Login',
         components:{
-            Home
+            Home,
+            Google
         },
         data(){
             return{
@@ -55,7 +49,7 @@
         methods: {
             setLogin(){
                 $.ajax({
-                    url: 'http://3.19.77.231:8000/rest-auth/login/',
+                    url: 'http://127.0.0.1:8000/rest-auth/login/',
                     type: "POST",
                     data: {
                         username: this.validateForm.login,
@@ -66,29 +60,6 @@
                         sessionStorage.setItem('token', response.token)
                         this.$router.push({name: 'home'})
                     }
-                })
-            },
-            onGoogleSignInSuccess(resp){
-                console.log(resp)
-                const token = resp.uc.access_token
-                console.log(token)
-                
-                $.ajax({
-                    url: 'http://3.19.77.231:8000/user/auth/google/',
-                    type: 'POST',
-                    data: {
-                        access_token: token
-                    },
-                    success: (response) => {
-                        console.log(response)
-                        sessionStorage.setItem('token', response.token)
-                        alert('auth success!')
-                        // this.$router.push({name: 'home'})
-                    },
-                    error: (response) => {
-                        console.log(response)
-                    }
-                    
                 })
             },
         }   
