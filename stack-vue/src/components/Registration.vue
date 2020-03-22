@@ -83,6 +83,16 @@
                  
             },
             LinkedInSignIn(resp){
+                $.ajax({
+                    url: 'http://localhost:8000/user/linkedin/login/',
+                    type: 'GET',
+                    success: (response) => {
+                        console.log(response)
+                    },
+                    error: (response) => {
+                        
+                    }
+                })
             }
         } 
     }

@@ -158,8 +158,30 @@ CORS_ORIGIN_ALLOW_ALL = True;
 CORS_ORIGIN_WHITE_LIST = [
     'http://localhost:8080',
     'http://localhost:8081',
-    'http://stackproj.s3-website.us-east-2.amazonaws.com'
+    'http://stackproj.s3-website.us-east-2.amazonaws.com',
+    'https://www.linkedin.com'
 ]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
 
 ACCOUNT_LOGOUT_ON_GET = True
 
@@ -191,9 +213,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 SOCIALACCOUNT_PROVIDERS = {
-    'linkedin': {
+    'linkedin_oauth2': {
         'SCOPE': [
             'r_emailaddress',
+            'r_liteprofile',
+            'w_member_social'
         ],
         'PROFILE_FIELDS': [
             'id',
